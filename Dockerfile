@@ -24,6 +24,4 @@ RUN echo "daemon off;">>/usr/local/nginx/conf/nginx.conf
 #设置生成容器时需要执行的脚本
 CMD ["/usr/local/nginx/sbin/nginx"]
 #开放22、80、443端口
-EXPOSE 22
-EXPOSE 80
-EXPOSE 443
+EXPOSE 22 80 443
