@@ -13,7 +13,8 @@ RUN yum install -y wget && \
 #下载并解压源码包
 RUN wget http://nginx.org/download/nginx-1.8.0.tar.gz && \
     tar -zxvf nginx-1.8.0.tar.gz && \ 
-    mv nginx-1.8.0/ nginx
+    mv nginx-1.8.0/ nginx && \
+    rm -f nginx-1.8.0.tar.gz
 
 # 切换到nginx目录执行以下操作
 WORKDIR nginx
@@ -25,7 +26,8 @@ RUN rpm --rebuilddb && \
     make && \
     make install && \
     /usr/local/nginx/sbin/nginx && \
-    echo "daemon off;">>/usr/local/nginx/conf/nginx.conf
+    echo "daemon off;">>/usr/local/nginx/conf/nginx.conf && \
+    yum clean all 
 
 EXPOSE 22 80 443
 
