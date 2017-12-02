@@ -8,10 +8,8 @@ WORKDIR /home
 #安装wget
 RUN yum install -y wget && \
     rpm --rebuilddb && \
-    yum install -y tar
-
-#下载并解压源码包
-RUN wget http://nginx.org/download/nginx-1.8.0.tar.gz && \
+    yum install -y tar && \
+    wget http://nginx.org/download/nginx-1.8.0.tar.gz && \
     tar -zxvf nginx-1.8.0.tar.gz && \ 
     mv nginx-1.8.0/ nginx && \
     rm -f nginx-1.8.0.tar.gz
