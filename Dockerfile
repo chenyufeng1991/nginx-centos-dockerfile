@@ -1,4 +1,4 @@
-FROM centos:6
+FROM centos:6.7
 MAINTAINER chenyufeng "yufengcode@gmail.com"
 
 # 设置当前工具目录
