@@ -5,7 +5,7 @@ MAINTAINER chenyufeng "yufengcode@gmail.com"
 # 该命令不会新增镜像层
 WORKDIR /home
 
-#安装wget
+# 安装wget
 RUN yum install -y wget && \
     rpm --rebuilddb && \
     yum install -y tar && \
@@ -17,7 +17,7 @@ RUN yum install -y wget && \
 # 切换到nginx目录执行以下操作
 WORKDIR nginx
 
-#编译安装nginx
+# 编译安装nginx
 RUN rpm --rebuilddb && \
     yum install -y gcc make pcre-devel zlib-devel && \
     ./configure --prefix=/usr/local/nginx --with-pcre && \
@@ -27,6 +27,9 @@ RUN rpm --rebuilddb && \
     echo "daemon off;">>/usr/local/nginx/conf/nginx.conf && \
     yum clean all 
 
-EXPOSE 22 80 443
+# 切换到/usr/local/nginx目录，配置文件在/usr/local/nginx/conf/nginx.conf
+WORKDIR /usr/local/nginx
+
+EXPOSE 80 443
 
 CMD ["/usr/local/nginx/sbin/nginx"]
