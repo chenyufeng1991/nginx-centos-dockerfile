@@ -1,3 +1,4 @@
+# 基于centos6基础镜像
 FROM centos:6
 MAINTAINER chenyufeng "yufengcode@gmail.com"
 
@@ -25,11 +26,15 @@ RUN rpm --rebuilddb && \
     make install && \
     /usr/local/nginx/sbin/nginx && \
     echo "daemon off;">>/usr/local/nginx/conf/nginx.conf && \
+    ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone && \    
     yum clean all 
+
+ENV TZ Asia/Shanghai
 
 # 切换到/usr/local/nginx目录，配置文件在/usr/local/nginx/conf/nginx.conf
 WORKDIR /usr/local/nginx
 
 EXPOSE 80 443
 
+# 启动nginx执行以下的命令
 CMD ["/usr/local/nginx/sbin/nginx"]
